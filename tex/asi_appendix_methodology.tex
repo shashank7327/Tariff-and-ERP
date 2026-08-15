@@ -1,0 +1,485 @@
+% =====================================================================
+%  APPENDIX B — ASI measurement: methodology, formulas and assumptions
+%  Inserted between the ERP appendix and the supplementary figures by
+%  build_downstream_report.py. Referenced from Section 4 as Appendix~\ref{app:asi}.
+% =====================================================================
+
+\section{Appendix: ASI Measurement --- Segmentation Rule, Formulas and Assumptions}
+\label{app:asi}
+
+This appendix sets out in full the segmentation rule, estimators and assumptions
+underlying Section~\ref{sec:asi_method} and the figures that follow it. It is
+placed here rather than in the body so that the argument can be read without
+interruption; nothing in Section~4 depends on material that is not stated here.
+
+\subsection{The segmentation rule}
+\label{app:asi_rule}
+
+Following Corden \cite{corden1966}, the unit of effective-protection analysis is an
+\textbf{activity}: a process converting traded inputs into a traded output, whose
+protection depends jointly on the tariff on that output and the tariffs on its
+inputs. Formally, for an activity $j$ with output tariff $t_j$ and input tariffs
+$t_i$ over an input set with cost shares $a_{ij}$ (valued at free-trade prices),
+the effective rate of protection is
+\begin{equation}
+    \mathrm{ERP}_j \;=\; \frac{t_j - \sum_i a_{ij} t_i}{1 - \sum_i a_{ij}} .
+    \label{eq:erp}
+\end{equation}
+Equation~\eqref{eq:erp} makes two properties explicit that the body of the report
+relies on. First, $\mathrm{ERP}_j < 0$ whenever $\sum_i a_{ij} t_i > t_j$: a
+sufficiently protected input drives effective protection on the output negative,
+which is the inverted-duty-structure case. Second,
+$\partial \mathrm{ERP}_j / \partial t_i = -a_{ij}/(1 - \sum_i a_{ij})$, so the
+damage done by an input tariff rises with the input-cost share $\sum_i a_{ij}$ ---
+equivalently, it rises as the share of value added in output falls. This is the
+formal content of the ``transmission mechanism'' paragraph in Section~4.7:
+downstream fabrication carries an input-cost share of 83.1 per cent, so the
+denominator of \eqref{eq:erp} is small and any input-tariff wedge is amplified.
+The operational estimator actually used on Supply--Use data is the modified
+Corden form given in Appendix~\ref{app:erp}.
+
+The classification rule follows directly. Let $\mathcal{H}$ denote the set of HS
+headings on which Section~\ref{sec:erp} estimates effective protection, that is
+$\mathcal{H} = \{7604,\dots,7616\}$, and let $h(i)$ be the principal output
+heading of NIC class $i$. Then
+\begin{equation}
+    i \in D \iff h(i) \in \mathcal{H},
+    \qquad
+    i \in U \iff h(i) \in \{7601, 7602, 7603\},
+    \label{eq:rule}
+\end{equation}
+giving $U = \{2420\}$ and $D = \{2432,\, 2511,\, 2599\}$. Classes whose principal
+output lies outside HS Chapter~76 --- NIC~2710, 2732, 2733 and 3030, whose outputs
+fall in HS Chapters~85 and~88 --- are excluded: they are distinct activities in the
+sense of \eqref{eq:erp}, facing a different output tariff and a different input
+vector. The concordance produced by \eqref{eq:rule} is Table~\ref{tab:nic_concordance}.
+
+\subsection{Notation}
+
+For NIC class $i$ and financial year $t$, the ASI reports
+\[
+\begin{array}{ll}
+O_{it} & \text{total output} \\
+M_{it} & \text{total inputs} \\
+W_{it} & \text{wages and salaries} \\
+L_{it} & \text{total persons engaged}
+\end{array}
+\qquad
+\begin{array}{ll}
+N_{it} & \text{total workers} \\
+C_{it} & \text{workers employed through contractors} \\
+\pi_{it} & \text{net profit} \\
+\tau_{t} & \text{effective corporate tax rate in year } t
+\end{array}
+\]
+For a segment $S \in \{U, D\}$ all quantities aggregate additively,
+$X_{St} = \sum_{i \in S} X_{it}$.
+
+\subsection{Estimators}
+
+Gross value added is the published accounting identity
+\begin{equation}
+    V_{it} \;=\; O_{it} - M_{it},
+    \label{eq:gva}
+\end{equation}
+which holds in the source data to within $10^{-6}$ per cent in every class and
+year. Value added per person engaged, and the labour-intensity ratio on which
+Section~4.3 rests, are
+\begin{equation}
+    v_{St} \;=\; \frac{V_{St}}{L_{St}},
+    \qquad
+    \lambda_t \;=\; \frac{v_{Ut}}{v_{Dt}} .
+    \label{eq:lambda}
+\end{equation}
+$\lambda_t > 1$ means a rupee of value added created downstream sustains
+$\lambda_t$ times the employment of a rupee created upstream. The remaining
+shares are
+\begin{equation}
+    \omega_{St} = \frac{W_{St}}{V_{St}}
+    \quad\text{(labour share)},
+    \qquad
+    c_{St} = \frac{C_{St}}{N_{St}}
+    \quad\text{(contract share)},
+    \qquad
+    m_{St} = \frac{M_{St}}{O_{St}}
+    \quad\text{(input-cost share)} .
+    \label{eq:shares}
+\end{equation}
+
+\paragraph{Corporate tax and employment yield.} Corporate tax is not published by
+the ASI and is estimated as net profit multiplied by the effective corporate tax
+rate for the year, with loss-making observations excluded rather than netted off:
+\begin{equation}
+    T_{St} \;=\; \tau_t \sum_{i \in S} \pi_{it}\,\mathbf{1}\{\pi_{it} > 0\},
+    \qquad
+    y_{St} \;=\; \frac{L_{St}}{T_{St}} ,
+    \label{eq:tax}
+\end{equation}
+where $y_{St}$ is persons engaged per unit of corporate tax. The indicator
+$\mathbf{1}\{\cdot\}$ matters: a negative $\pi$ would otherwise generate a negative
+tax, which has no behavioural interpretation. One observation within the retained
+classes is affected (NIC~2432 in 2013--14).
+
+\paragraph{Index, growth and volatility.} With base year $b = 2011\text{--}12$,
+\begin{equation}
+    I_{St} \;=\; 100 \times \frac{V_{St}}{V_{Sb}} .
+    \label{eq:index}
+\end{equation}
+Because $V_{Ut}$ is volatile, growth is reported on three-year endpoint averages
+as well as on single endpoints. Writing $A = \{2011\text{--}12,\,2012\text{--}13,\,2013\text{--}14\}$
+and $B = \{2020\text{--}21,\,2021\text{--}22,\,2022\text{--}23\}$, and $\bar V_{S\mathcal{A}}$
+for the mean of $V_{St}$ over a set $\mathcal{A}$,
+\begin{equation}
+    g_S \;=\; \frac{\bar V_{SB}}{\bar V_{SA}} - 1,
+    \qquad
+    \mathrm{CAGR}_S \;=\; \left( \frac{\bar V_{SB}}{\bar V_{SA}} \right)^{1/9} - 1 ,
+    \label{eq:growth}
+\end{equation}
+the exponent being the nine years separating the midpoints of $A$ and $B$.
+Volatility is the sample standard deviation of year-on-year log growth over the
+twelve clean years,
+\begin{equation}
+    \sigma_S \;=\; \mathrm{sd}\!\left( \ln V_{S,t+1} - \ln V_{St} \right) .
+    \label{eq:vol}
+\end{equation}
+
+\subsection{Construction of each figure}
+\label{app:asi_figures}
+
+Figure notes in the body carry no derivations. The construction of each is given
+here. Throughout, $S \in \{U, D\}$, $t$ indexes the financial year, and the base
+year is $b = 2011\text{--}12$. Series are computed on the twelve-year window
+$t \in [2011\text{--}12,\ 2022\text{--}23]$ except where stated.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{llp{7.8cm}}
+        \toprule
+        \textbf{Figure} & \textbf{Estimator} & \textbf{Construction and domain} \\
+        \midrule
+        4.1 & \eqref{eq:index} & $I_{St} = 100\,V_{St}/V_{Sb}$, both segments, $t$ extended
+        to 2023--24. Current prices; no deflator. \\
+        \addlinespace
+        4.2 & \eqref{eq:lambda} & $\lambda_t = v_{Ut}/v_{Dt}$. Reference lines: the sample
+        median of $\{\lambda_t\}$, and the exogenous 2.5$\times$ benchmark of
+        \cite{mom_vision2025}, which is not an estimate of ours. \\
+        \addlinespace
+        4.3 & \eqref{eq:shares} & $\omega_{St} = W_{St}/V_{St}$. Numerator and denominator
+        are both monetary, so the series is invariant to the treatment of persons engaged. \\
+        \addlinespace
+        4.4 & \eqref{eq:index} & $I_{it} = 100\,V_{it}/V_{ib}$ at class rather than segment
+        level, $i \in \{2420, 2432, 2511, 2599\}$. The horizontal reference is $I = 100$. \\
+        \addlinespace
+        4.5 & \eqref{eq:shares} & $c_{St} = C_{St}/N_{St}$. The denominator is total
+        \emph{workers} $N$, not persons engaged $L$: the direct/contract partition is
+        defined only within $N$. \\
+        \addlinespace
+        4.6 & \eqref{eq:tax} & $y_{St} = L_{St}/T_{St}$. Since $\tau_t$ is common to both
+        segments it cancels from $y_{Dt}/y_{Ut}$, so the ratio is invariant to the
+        assumed tax rate. \\
+        \addlinespace
+        4.7 & --- & Four ratios evaluated at $t = 2022\text{--}23$, each formed from
+        estimators already defined: $v_U/v_D = 24.97/7.95$; $\omega_D/\omega_U =
+        38.41/17.59$; $y_D/y_U = 150.83/38.73$; $\sigma_U/\sigma_D = 0.3732/0.1046$.
+        The fourth is oriented upstream-over-downstream because it is upstream value
+        added that is the more variable. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\noindent \textbf{Domain restrictions.} All series terminate at 2022--23 under
+assumption~A7 below. Figure~4.1 extends to 2023--24 because the index depends only on
+$V$, which is unaffected by the two breaks in that release; every series involving
+$W$ or the direct/contract partition necessarily stops at 2022--23. Loss-making
+observations are excluded from $T_{St}$ by the indicator in \eqref{eq:tax}; one
+observation within the retained classes is affected.
+
+\subsection{Two derived results used in Section~4}
+
+\paragraph{Amplification of an input-cost wedge.} Let $m = M/O$ be bought-in inputs as
+a share of output value and $\theta$ the share of the input bill accounted for by
+metal. Since $V = (1-m)O$, a proportional rise $\hat p$ in the metal price reduces
+value added by
+\begin{equation}
+    \frac{\Delta V}{V} \;=\; -\,\frac{m\theta}{1-m}\,\hat p ,
+    \label{eq:passthrough}
+\end{equation}
+so that $m/(1-m)$ is the factor by which a proportional input-cost change is
+amplified when it reaches value added. This is equation~\eqref{eq:erp} viewed from
+the producer's side: the denominator $1 - \sum_i a_{ij}$ that governs the effective
+rate is the same value-added share that governs the amplification. With the measured
+downstream input share $m = 0.8309$ the factor is \textbf{4.91}; upstream, where the
+metal is produced rather than purchased, $\theta \approx 0$ and the effect vanishes.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Metal share of} & \textbf{Value added lost} & \textbf{Value added lost} \\
+        \textbf{input bill, $\theta$} & \textbf{per 1\% on metal} & \textbf{at a 7.5\% wedge} \\
+        \midrule
+        30\% & 1.48\% & 11.1\% \\
+        40\% & 1.97\% & 14.7\% \\
+        50\% & 2.46\% & 18.4\% \\
+        60\% & 2.95\% & 22.1\% \\
+        70\% & 3.44\% & 25.8\% \\
+        \bottomrule
+    \end{tabular}
+
+    \vspace{0.15cm}
+    \raggedright
+    \small $\theta$ is not observable in the ASI, which records the input bill in
+    value but not by material. The range spans plausible values for aluminium
+    conversion; firm-level cost data would replace it with a point estimate.
+\end{table}
+
+\paragraph{Employment per tonne.} Writing $Q$ for tonnes processed, the per-tonne
+employment ratio decomposes exactly into the per-rupee ratio and the ratio of value
+added per tonne:
+\begin{equation}
+    \frac{L_D/Q_D}{L_U/Q_U}
+    \;=\;
+    \underbrace{\frac{L_D/V_D}{L_U/V_U}}_{\lambda \;=\; 3.14}
+    \times
+    \underbrace{\frac{V_D/Q_D}{V_U/Q_U}}_{1.81}
+    \;=\; 5.7 .
+    \label{eq:pertonne}
+\end{equation}
+Both factors exceed unity, so the two normalisations reinforce rather than offset one
+another. Tonnage is not an ASI variable: $Q_U$ is installed primary capacity for FY24
+and $Q_D$ an industry estimate of 2.0--2.5 Mt, which is why Section~4.3 reports the
+per-tonne figure as a range of 5.1--6.4 and treats it as supporting rather than
+primary evidence. Equation~\eqref{eq:pertonne} also disposes of the much larger
+ratios sometimes quoted: a figure near 35:1 requires counting the direct workforce of
+the primary smelters alone against the direct, indirect and unorganised workforce
+downstream, and the two mismatches together account for the whole of the difference.
+
+\subsection{Apportionment, and why it does not affect the results}
+\label{app:asi_alpha}
+
+None of the classes in $U$ or $D$ is exclusive to aluminium. The natural objection
+is that each should be scaled by an aluminium share $\alpha_i \in (0,1]$, giving
+$V^{Al}_{i} = \alpha_i V_{i}$ and $L^{Al}_{i} = \alpha_i L_{i}$. Applying a
+coefficient derived from output shares to an employment variable embeds the
+\emph{industry technology assumption} --- that aluminium activity within a class has
+the same factor intensity as the rest of that class --- as against the
+\emph{commodity technology assumption}, under which each product carries its own
+factor requirements wherever it is made \cite{millerblair}. The choice is
+consequential in general. Here it is not, for a reason that can be stated exactly
+rather than simulated.
+
+\paragraph{Proposition.} \textit{For any apportionment vector
+$\alpha = (\alpha_i)_{i \in D}$ with $\alpha_i > 0$, the apportioned segment
+productivity $v_D(\alpha)$ is a weighted average of the class productivities
+$v_i = V_i / L_i$, and is therefore bounded by their range irrespective of
+$\alpha$.}
+
+\paragraph{Proof.} Writing $w_i(\alpha) = \alpha_i L_i \big/ \sum_{j \in D} \alpha_j L_j$,
+\begin{equation}
+    v_D(\alpha)
+    \;=\; \frac{\sum_{i \in D} \alpha_i V_i}{\sum_{i \in D} \alpha_i L_i}
+    \;=\; \sum_{i \in D} \frac{\alpha_i L_i}{\sum_{j} \alpha_j L_j} \cdot \frac{V_i}{L_i}
+    \;=\; \sum_{i \in D} w_i(\alpha)\, v_i ,
+    \label{eq:weighted}
+\end{equation}
+with $w_i(\alpha) > 0$ and $\sum_i w_i(\alpha) = 1$. Hence
+$\min_i v_i \le v_D(\alpha) \le \max_i v_i$. Since $U$ is a single class,
+$v_U$ is exactly invariant to $\alpha_U$, which cancels in \eqref{eq:lambda}.
+Therefore
+\begin{equation}
+    \frac{v_U}{\max_{i \in D} v_i} \;\le\; \lambda(\alpha) \;\le\; \frac{v_U}{\min_{i \in D} v_i}
+    \qquad \text{for every } \alpha . \qquad \rule{0.9ex}{0.9ex}
+    \label{eq:bound}
+\end{equation}
+
+\paragraph{The bound, evaluated.} In 2022--23 the class productivities are
+$v_{2432} = 7.43$, $v_{2511} = 7.38$ and $v_{2599} = 8.30$ lakh per person, against
+$v_U = 24.97$. Substituting into \eqref{eq:bound},
+\[
+    3.01 \;\le\; \lambda(\alpha) \;\le\; 3.38
+    \qquad \text{for \emph{any} apportionment whatever,}
+\]
+against the reported undiscounted value of 3.14. The result requires no assumption
+about the magnitude of any $\alpha_i$ --- only that the shares be positive. It also
+explains why the 48-scenario grid reported in Section~4.9 moves $\lambda$ so little:
+every one of those scenarios necessarily lies inside \eqref{eq:bound}.
+
+\paragraph{What is \emph{not} invariant.} The same algebra shows that
+\emph{levels} carry no such protection. The cross-segment employment multiple
+$L_D(\alpha)/L_U(\alpha) = \sum_i \alpha_i L_i / (\alpha_U L_U)$ is homogeneous of
+degree one in $\alpha$ and ranges from 0.81 to 3.07 across plausible vectors.
+This replicates, in a different setting, Bohlin and Widell's finding that the
+technology assumption matters greatly for technical coefficients and little for
+factor-content applications \cite{bohlin2006}. Accordingly the report quotes
+intensity ratios, shares and per-rupee statistics throughout, and makes no
+cross-segment comparison of employment levels.
+
+\subsection{Assumptions}
+\label{app:asi_assumptions}
+
+The following are stated so that each can be checked or contested independently.
+
+\begin{enumerate}[label=\textbf{A\arabic*.}, leftmargin=2.6em]
+    \item \textbf{Partition criterion.} Segments are defined by \eqref{eq:rule}: a
+    class is downstream if and only if its principal output lies in HS~7604--7616.
+    This is Corden's activity criterion, not a process-stage criterion; the
+    material-flow literature separates semi-fabrication from fabrication, and the
+    consequence of adopting that alternative is reported in Section~4.9.
+
+    \item \textbf{Nominal valuation.} All values are at current prices with no
+    deflator applied. Growth rates are therefore nominal and overstate real
+    expansion; comparisons between segments are unaffected, since both are
+    measured on the same basis.
+
+    \item \textbf{Principal-product classification.} The ASI assigns an
+    establishment wholly to the NIC class of its principal product. Because
+    NIC~2420's explanatory note includes semi-manufacturing, foil and wire
+    drawing, output of HS~7604--7608 produced within integrated smelters is
+    recorded upstream. This biases every comparison in the report \emph{against}
+    its own conclusion; no correction is applied.
+
+    \item \textbf{No apportionment by metal.} Class aggregates are used
+    undiscounted, so segment totals measure the registered manufacturing space
+    within which aluminium activity sits, not a pure aluminium account.
+    Appendix~\ref{app:asi_alpha} shows the reported ratios are bounded
+    irrespective of any apportionment.
+
+    \item \textbf{Uniform tax rate.} The effective corporate tax rate $\tau_t$ in
+    \eqref{eq:tax} is applied uniformly across classes within a year. Differences
+    in effective rates between segments are not observable in the published data.
+
+    \item \textbf{Loss exclusion.} Loss-making observations are excluded from the
+    tax series rather than netted off, per \eqref{eq:tax}.
+
+    \item \textbf{Terminal year.} 2023--24 is excluded from all stated statistics.
+    Reported wages fall in every class in that year while output and persons
+    engaged rise, and the identity $N_{it} = $ directly employed $+$ contract fails
+    with a residual of 178,591 workers (19.6 per cent of the total), having held
+    exactly in each of the twelve preceding years.
+
+    \item \textbf{Frame coverage.} The ASI covers registered factories only ---
+    units with 10 or more workers using power, or 20 or more without. Downstream
+    aluminium fabrication has a substantial unincorporated segment outside this
+    frame; upstream smelting has none. The downstream aggregate is therefore an
+    undercount to an extent the published data cannot quantify.
+
+    \item \textbf{Missing classes.} NIC~2512 (tanks, reservoirs, gas containers) is
+    not disaggregated in the ASI All-India summary, so HS~7611 and 7613 --- two of
+    the thirteen ERP lines --- have no ASI counterpart and are absent from the
+    downstream aggregate.
+\end{enumerate}
+
+Assumptions A3, A8 and A9 all run in the same direction: each inflates the
+measured upstream segment or deflates the measured downstream one. The gaps
+reported in Section~4 are accordingly lower bounds.
+
+\subsection{Robustness}
+\label{app:asi_robust_table}
+
+Every quantitative claim in Section~4 was tested against the objections a reader is
+likely to raise. The tests are set out here rather than in the body because several of
+them are only interesting if the answer is unexpected, and none of them is. Two are
+findings in their own right and are flagged as such.
+
+\paragraph{Sign consistency: nothing depends on the year chosen.} Across the twelve
+clean years, and without a single exception, downstream fabrication is the more
+labour-intensive segment ($\lambda_t > 1$); the ratio exceeds the Ministry of Mines'
+2.5$\times$ lower bound; the downstream wage share exceeds the upstream wage share
+($\omega_{Dt} > \omega_{Ut}$); downstream persons engaged exceed upstream
+($L_{Dt} > L_{Ut}$); and downstream employment per unit of estimated tax exceeds
+upstream ($y_{Dt} > y_{Ut}$). Twelve out of twelve on all five. This is the strongest
+single robustness result in the section: no headline claim is an artefact of the year
+selected.
+
+\paragraph{Terminal year.} Recomputing $\lambda$ to alternative terminal years gives
+3.17, 3.08, 3.75, 5.81, 3.14 and 3.05 for 2018--19 through 2023--24. The value
+reported in the body, 3.14, sits near the bottom of that range --- which is the answer
+to any suggestion that the terminal year was chosen to flatter.
+
+\paragraph{Base year.} Single-endpoint growth comparisons \emph{are} sensitive to the
+base year, because $V_{Ut}$ is volatile; the sign of the growth differential can be
+moved by the choice. This is why growth is also reported on the three-year endpoint
+averages of \eqref{eq:growth}, which are stable: upstream 105.6 per cent against
+downstream 73.0 per cent, compound rates of 8.34 and 6.28 per cent. Both bases give
+the same ordering and a similar gap, and no claim in Section~4 rests on the
+single-endpoint comparison alone.
+
+\paragraph{Leave-one-out.} Dropping each downstream class in turn moves the 2022--23
+labour-intensity ratio to 3.13 (without 2432), 3.04 (without 2511) and 3.38 (without
+2599), against 3.14 for the full basket. No single class drives the result.
+
+\paragraph{The process-taxonomy objection.} Section~\ref{app:asi_rule} groups
+semi-fabrication with fabrication on Corden's criterion, whereas the material-flow
+literature separates them as distinct process steps \cite{cullen2013,bertram2009}.
+Because NIC~2432 is the semis-and-casting class, the objection can be settled by
+reassigning it and recomputing. Doing so moves $\lambda$ from 3.14 to 2.77, the
+wage-share gap from 20.8 to 19.6 percentage points, and the employment-yield ratio
+from 3.89 to 3.31. Every conclusion survives; only the magnitudes move, and modestly.
+The reason is visible in the underlying figure: NIC~2432's own value added per person
+engaged is INR 7.43 lakh, close to the INR 7.99 lakh of the remaining fabrication
+classes and nowhere near the INR 24.97 lakh of primary metal. On the measure that
+matters here, semi-fabrication behaves like fabrication rather than like smelting,
+whichever taxonomy one prefers --- which is a more durable position than winning the
+classification argument would have been.
+
+\paragraph{Basket width.} Earlier drafts used a wider downstream basket, adding
+NIC~2710 (motors, generators, transformers) and 2732 (insulated wire and cable).
+Those classes fail the rule of \eqref{eq:rule} --- their outputs are HS Chapter~85, a
+different activity protected by different tariffs --- but the findings do not depend on
+excluding them. On the wide basket $\lambda$ is 2.61 rather than 3.14, the wage-share
+gap 18.9 rather than 20.8 percentage points, and the employment-yield ratio 2.91
+rather than 3.89. Every direction is unchanged; the magnitudes move \emph{against} the
+wider basket. The narrow basket is preferred not because it is more favourable but
+because it is the only one consistent with the HS~7604--7616 scope on which the rest of
+the report is built.
+
+\paragraph{Summary.} Table~\ref{tab:asi_robust} collects the results. The reported
+specification is the first row of each block.
+
+\begin{table}[H]
+    \centering
+    \caption{Sensitivity of the labour-intensity ratio $\lambda$ and associated statistics}
+    \label{tab:asi_robust}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lrrr}
+        \toprule
+        \textbf{Specification} & $\boldsymbol{\lambda}$ & \textbf{Wage-share gap} & \textbf{Jobs per rupee of tax} \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Reported specification}} \\
+        Upstream 2420; downstream 2432, 2511, 2599 & \textbf{3.14} & \textbf{20.8 pp} & \textbf{3.89} \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Terminal year}} \\
+        2018--19 & 3.17 & --- & --- \\
+        2019--20 & 3.08 & --- & --- \\
+        2020--21 & 3.75 & --- & --- \\
+        2021--22 (metal-price peak) & 5.81 & --- & --- \\
+        2023--24 (excluded, shown for reference) & 3.05 & --- & --- \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Leave-one-out on the downstream basket}} \\
+        Excluding 2432 & 3.13 & --- & --- \\
+        Excluding 2511 & 3.04 & --- & --- \\
+        Excluding 2599 & 3.38 & --- & --- \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Alternative segment definitions}} \\
+        Material-flow reading: 2432 grouped upstream & 2.77 & 19.6 pp & 3.31 \\
+        Wide basket: adding 2710 and 2732 & 2.61 & 18.9 pp & 2.91 \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Apportionment}} \\
+        Analytic bound over all $\alpha$, eq.~\eqref{eq:bound} & 3.01--3.38 & --- & --- \\
+        48-scenario grid & 3.19--3.21 & --- & --- \\
+        \bottomrule
+    \end{tabular}
+    }
+
+    \vspace{0.2cm}
+    \raggedright
+    \small Source: our calculations from ASI All-India summary results, 2022--23 unless
+    otherwise stated. ``---'' denotes a statistic not recomputed for that variant because it
+    is not at issue. Every row preserves the sign and the order of magnitude of the reported
+    specification; the lowest value anywhere in the table, 2.61, still exceeds the Ministry of
+    Mines' 2.5$\times$ lower bound.
+\end{table}
+
+

@@ -1,0 +1,333 @@
+% =====================================================================
+%  PROJECT RECORD — analytical, reportage and visualisation work on the
+%  Indian downstream aluminium tariff study.
+%  A handover record and a source for CV / portfolio framing.
+% =====================================================================
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, top=2.0cm, bottom=2.0cm, left=2.1cm, right=2.1cm]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{DejaVu Sans}
+  {\setmainfont{DejaVu Sans}}
+  {\IfFontExistsTF{Verdana}{\setmainfont{Verdana}}{\setmainfont{Arial}}}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\emergencystretch=2.5em
+\hbadness=10000
+
+\definecolor{shade}{gray}{0.945}
+\newtcolorbox{glance}{colback=shade, colframe=black!55, boxrule=0.5pt,
+  arc=2pt, left=7pt, right=7pt, top=5pt, bottom=5pt}
+
+\titleformat{\section}{\large\bfseries}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.7em}{}
+\setlength{\parskip}{0.35em}
+
+\title{\textbf{Project Record}\\
+\large Rationalizing Tariff Structures in the Indian Downstream Aluminium Industry\\
+\normalsize Analytical work, reportage and visualisation}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-0.9cm}
+
+\begin{glance}
+\textbf{At a glance.} An evidence-based policy submission arguing for rationalisation
+of the basic customs duty on primary aluminium (HS~7601). The work comprised: an
+effective-rate-of-protection analysis across thirteen product lines and six trading
+partners; an industrial-statistics analysis built from 3,705 observations of the
+Annual Survey of Industries; a public-finance analysis of the tariff-versus-GST
+trade-off; and the production of a 45-page report with 21 figures, supported by an
+automated verification harness and three technical companion documents.
+\end{glance}
+
+\section{Objective and scope}
+
+The study set out to answer four questions: whether India's present tariff structure
+places downstream aluminium products at a measurable disadvantage; what that
+disadvantage costs in value addition and employment; whether the fiscal objection to
+correcting it holds; and what policy change follows. Scope was fixed at
+HS~7601--7616, the chapter-76 lines spanning unwrought metal through fabricated
+articles.
+
+The central analytical problem was that the tariff evidence and the industrial
+evidence had to describe \emph{the same industry}. Resolving that --- deriving the
+industrial classification from the tariff schedule rather than from convention ---
+was the methodological core of the project.
+
+\section{Data sources}
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{p{4.6cm}p{4.0cm}p{6.4cm}}
+\toprule
+\textbf{Source} & \textbf{Coverage} & \textbf{Used for} \\
+\midrule
+Annual Survey of Industries, All-India summary & 3,705 observations; 15 indicators, 19 NIC classes, 13 years (2011--12 to 2023--24) & All industrial statistics: value added, employment, wages, workers, contract labour, net profit \\
+\addlinespace
+MOSPI Supply--Use Tables & 26 supply and use files, 2011--12 to 2023--24 & Effective protection estimates; input-cost shares \\
+\addlinespace
+Tariff schedules & 256 tariff lines, HS 7601--7616, six partners & MFN and preferential rates; the ERP basket \\
+\addlinespace
+Effective corporate tax rates & By year, 2011--12 to 2023--24 & Corporate-tax base estimation \\
+\addlinespace
+Ministry of Mines, OECD, GTRI, CEA, Union Budget & Published & Capacity, demand, trade composition, public capital expenditure \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Analytical work}
+
+\subsection{Segmentation: deriving the classification from the tariff schedule}
+
+The prior draft partitioned the ASI on convention. The work replaced this with a
+rule derived from Corden's definition of an \emph{activity} --- a stage of conversion
+from traded input to traded output --- so that a NIC class enters the downstream
+aggregate if and only if its principal output falls within the thirteen ERP lines
+HS~7604--7616. This produced upstream $=$ NIC 2420 and downstream $=$ NIC 2432,
+2511, 2599, and required excluding four classes previously included whose outputs
+fall in HS Chapters 85 and 88.
+
+The rule was cross-checked against the OECD's aluminium value-chain segmentation and
+against the material-flow literature, and the divergence from the latter was tested
+rather than argued: reassigning the semi-fabrication class moves the headline result
+from 3.14 to 2.77 and changes no conclusion.
+
+\subsection{Series construction}
+
+Thirteen annual series were built for each segment and each constituent class:
+gross value added, output, inputs, wages, persons engaged, total workers, contract
+workers, net profit, and estimated corporate tax. From these, nine derived measures:
+value added per person engaged, labour-intensity ratio, wage share, contract share,
+input-cost share, employment yield per unit of tax, index series, three-year endpoint
+growth, and year-on-year log volatility.
+
+\subsection{Principal findings}
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{p{6.6cm}p{4.0cm}p{4.4cm}}
+\toprule
+\textbf{Finding} & \textbf{Result} & \textbf{Robustness} \\
+\midrule
+Labour intensity: employment sustained per unit of value added & \textbf{3.14$\times$} downstream; range 3.08--6.18, median 3.93 & Holds in 12 of 12 years; exceeds the Ministry of Mines' 2.5$\times$ benchmark in all \\
+\addlinespace
+Labour share of value added & \textbf{38.4\%} vs \textbf{17.6\%} & Series never cross in 12 years; uses only monetary variables \\
+\addlinespace
+Employment per unit of estimated corporate tax & \textbf{151} vs \textbf{39} persons per crore & Ordering holds in 12 of 12 years \\
+\addlinespace
+Structural products (NIC 2511, HS 7610) & $+$\textbf{15.0\%} nominal over 11 years; workforce flat & The single most disprotected ERP line \\
+\addlinespace
+Volatility of value added & Upstream \textbf{3.6$\times$} downstream & sd of year-on-year log growth \\
+\addlinespace
+Input-cost amplification & \textbf{4.91$\times$} & Derived from a measured input share of 83.1\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Analytical results established rather than asserted}
+
+Three results were derived formally rather than argued or simulated, and these are
+the most durable output of the project.
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=4pt]
+\item \textbf{Apportionment invariance.} The objection that the NIC classes are not
+exclusively aluminium was closed by proof rather than sensitivity runs. An
+apportioned segment productivity is necessarily a weighted average of its class
+productivities, hence bounded by their range for \emph{any} positive apportionment
+vector; the upstream segment being a single class, its coefficient cancels. The
+labour-intensity ratio therefore lies in $[3.01,\ 3.38]$ whatever apportionment is
+assumed. Verified against 200,000 random draws.
+
+\item \textbf{The per-tonne decomposition.} The employment-per-tonne ratio factors
+exactly into the per-rupee ratio times value added per tonne
+($3.14 \times 1.81 = 5.7$). This reconciled the report's own measure with the much
+larger ratios circulating in industry discussion, and showed those to arise from
+comparing mismatched employment universes.
+
+\item \textbf{The transfer-to-revenue identity.} In the tariff-versus-GST analysis,
+the ratio of surplus transferred to revenue collected reduces to
+$a/c = \phi(1-\mu)/[\mu(1-f)]$ --- import penetration, pass-through and the duty-free
+share. Price, exchange rate and both elasticities cancel. The result is therefore
+robust to the parameters least well known.
+\end{enumerate}
+
+\subsection{Public-finance analysis}
+
+A separate analysis addressed the fiscal objection to rationalisation: partial
+equilibrium welfare accounting (producer surplus, revenue, and both deadweight
+triangles, using supply and demand elasticities from the metals literature), the
+revenue-replacement arithmetic against the GST base, and an induced-expansion offset
+derived from the amplification factor. Headline results: \textbf{INR 17.5}
+transferred per rupee collected, \textbf{54 paise} of national income destroyed per
+rupee raised, and a revenue requirement replaceable by \textbf{0.18 of a percentage
+point} of GST.
+
+\section{Academic grounding}
+
+The argument was grounded in primary sources rather than secondary summary, with
+27 references in the final bibliography. The load-bearing citations:
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{p{5.4cm}p{9.6cm}}
+\toprule
+\textbf{Source} & \textbf{Role in the argument} \\
+\midrule
+Corden (1966) & Defines the activity as the unit of effective-protection analysis; supplies the segmentation rule \\
+Balassa (1965, 1968) & Precedent for negative effective protection; tariff escalation \\
+Pathania \& Bhattacharjea (2020) & Modified Corden estimator; Indian inverted duty structures \\
+Diamond \& Mirrlees (1971) & Production efficiency: intermediate goods should not be taxed \\
+Bhagwati \& Ramaswami (1963) & Target the distortion at source; trade instruments are second-best \\
+Emran \& Stiglitz (2005); Keen (2008) & The informality objection to VAT-for-tariff substitution, and its limits \\
+Baunsgaard \& Keen (2010) & Empirical evidence on revenue recovery after liberalisation \\
+Bohlin \& Widell (2006); Miller \& Blair (2009) & Technology assumptions; factor-content invariance \\
+Cullen \& Allwood (2013); Bertram et al.\ (2009) & Material-flow taxonomy of the aluminium system \\
+Chaurey (2015); Goldberg et al.\ (2010) & Contract labour; imported intermediate inputs and product growth \\
+OECD (2019); Viner (1950) & Value-chain segmentation; trade diversion \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Visualisation}
+
+Twenty-one figures across the report, seven of them rebuilt for the industrial
+statistics section. All are vector charts generated directly from the computed
+series, with the plotting coordinates emitted by the analysis code so that a figure
+cannot drift from its data.
+
+\subsection{Design constraints and how they were met}
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+\item \textbf{Monochrome legibility.} The report is a policy submission that will be
+printed and photocopied. Every series is distinguished by three redundant cues ---
+line style, marker shape and marker fill --- so that no series depends on colour or
+grey level. Bar charts pair a hatched light fill against a solid dark one.
+
+\item \textbf{No text merging with the plot.} Every printed value sits on an opaque
+white chip, so a plot line or gridline passing beneath cannot obscure it. Where two
+series run close or cross, per-point labelling was replaced by direct annotation of
+endpoints and turning points.
+
+\item \textbf{Legends outside the plotting area}, never overlying data.
+
+\item \textbf{Values on the chart.} No number in a figure has to be read off an axis.
+
+\item \textbf{Captions carry a source line only.} All construction, derivation and
+domain detail was moved to the appendix, so that the narrative reads without
+interruption.
+\end{enumerate}
+
+\subsection{Editorial decisions on the figure set}
+
+The section was reduced from eight figures to seven single-panel figures, cutting
+Chapter 4 from roughly seventeen pages to nine. Three charts were removed on the
+principle that a figure earns its place only if it advances the argument: a
+value-added-per-person chart whose ratio was the following figure; a persons-engaged
+index panel superseded by the labour-intensity chart; and a corporate-tax
+\emph{levels} panel, on which the comparison runs against the report's own case ---
+retained as a sentence of text so the concession is made, but not given a chart.
+
+\section{Quality assurance}
+
+\subsection{The verification harness}
+
+An automated checker recomputes every series from source, parses every plotting
+coordinate out of the document, and tests whether each plotted number is a correct
+rounding of the computed value \emph{at the precision printed}. It also re-checks the
+statistics quoted in prose. Current status: \textbf{all checks pass across 158
+plotted points and 30 quoted statistics}.
+
+\subsection{Errors found and corrected}
+
+The harness caught four errors that had survived several drafts: three plotted points
+rounded twice (136.47 printed as 137, 214.47 as 215, 139.47 as 140), and an
+amplification factor computed from a rounded input share and printed as 4.92 instead
+of 4.91. A separate manual check found a caption claiming NIC 2511 spent eight of
+eleven years below its base level, where the correct count is seven. None changed a
+conclusion; none would have been found by reading.
+
+\subsection{Analytical corrections made during review}
+
+Two substantive errors were caught and corrected in the analysis itself: a robustness
+claim that conflated leave-one-out with reassignment of a class (3.13 stated where
+2.77 was correct), and a transfer-to-revenue ratio computed on downstream fabrication
+throughput where the correct base is all domestic primary metal sold domestically
+(4.7:1 stated where 17.5:1 was correct).
+
+\subsection{Standards of claim}
+
+Causal language was audited and withdrawn where it had not been earned. The report
+now states explicitly that its evidence is association rather than an identified
+causal effect, names the absent counterfactual and the uncontrolled construction
+cycle, and removes a timing claim that twelve annual observations cannot support.
+Known weak points --- an assumed parameter, an industry-estimated tonnage, a tax
+proxy, a frame that excludes unincorporated units --- are stated in the documents
+rather than left to be discovered.
+
+\section{Deliverables}
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{p{5.6cm}p{1.6cm}p{7.8cm}}
+\toprule
+\textbf{Document} & \textbf{Extent} & \textbf{Purpose} \\
+\midrule
+Main report & 45 pp, 21 figures & The policy submission \\
+Author's notes & 22 pp & Every calculation behind every figure, with worked arithmetic; variable and coefficient glossary; the arguments and the figure carrying each \\
+Tariff-versus-GST note & 8 pp & Public-finance analysis; declared baseline, welfare accounting, sensitivity \\
+Decision record & 2 pp & Reviewer comments: what was adopted, what was not, and why \\
+\midrule
+\multicolumn{3}{l}{\textit{Analysis and build code}} \\
+Series computation & --- & Builds all series; emits plotting coordinates \\
+Verification harness & --- & Independent re-derivation and rounding audit \\
+Report assembly & --- & Deterministic build with cross-reference and bibliography injection \\
+Public-finance arithmetic & --- & Declared baseline, results, sensitivity \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Summary lines, for a CV or capability statement}
+
+\begin{itemize}[leftmargin=1.4em, itemsep=4pt]
+\item Built the industrial-statistics evidence base for a policy submission on
+aluminium tariff reform, constructing thirteen-year series for nine measures from
+3,705 ASI observations and reconciling the industrial classification to the tariff
+schedule so that the statistical and trade evidence described the same industry.
+
+\item Established the central finding --- that value added in downstream fabrication
+sustains 3.1 times the employment of value added in primary metal --- and demonstrated
+it held in every year of the record, corroborating an official estimate from an
+independent source.
+
+\item Closed the principal methodological objection analytically rather than by
+simulation, proving the headline ratio bounded within $[3.01, 3.38]$ for any
+apportionment of the underlying classes, and verifying the bound against 200,000
+draws.
+
+\item Conducted a public-finance analysis of the tariff-versus-GST trade-off,
+deriving a transfer-to-revenue identity independent of price, exchange rate and
+elasticity, and quantifying the revenue at issue as replaceable by 0.18 of a
+percentage point of GST.
+
+\item Designed and produced 21 monochrome-legible vector figures under print
+constraints, with plotting coordinates generated directly from the analysis so that
+figures could not drift from their data.
+
+\item Built an automated verification harness that re-derives every plotted point and
+quoted statistic from source; it caught four numerical errors that had survived
+several drafts.
+
+\item Grounded the argument in primary academic sources across trade theory, optimal
+taxation and industrial ecology, and audited the report's causal language, withdrawing
+claims the data could not support.
+\end{itemize}
+
+\end{document}

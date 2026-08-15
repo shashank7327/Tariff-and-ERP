@@ -1,0 +1,9 @@
+Phase,Division,Group,Class,Description of Industrial Activity,Primary Metal
+Upstream,7,72,729,Mining of aluminium ore (bauxite),Aluminium
+Upstream,24,242,2420,Manufacture of Aluminium from alumina and products,Aluminium
+Downstream,24,243,2432,Casting of non-ferrous metals,Aluminium/Both
+Downstream,25,251,2511,Manufacture of structural metal products (Aluminium frameworks/doors),Aluminium
+Downstream,25,259,2599,Manufacture of metal household articles/utensils,Aluminium/Both
+Downstream,27,271,2710,"Manufacture of electric motors, generators and transformers",Aluminium/Both
+Downstream,27,273,2732,Manufacture of electronic and electric wires/cables,Aluminium/Both
+Downstream,30,303,3030,Manufacture of air and spacecraft,Aluminium
